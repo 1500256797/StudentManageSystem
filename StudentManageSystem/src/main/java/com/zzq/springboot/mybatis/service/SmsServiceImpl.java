@@ -17,9 +17,9 @@ import java.util.Map;
  * Created by qqqqqqq on 17-8-29.
  */
 
-@Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.DEFAULT)
 
 @Service("SmsService")
+@Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT)
 public class SmsServiceImpl implements SmsService {
     //依赖注入
     @Autowired
@@ -43,17 +43,18 @@ public class SmsServiceImpl implements SmsService {
 
     //××××××××××××××××××用户服务层接口实现
 
+    @Transactional(readOnly = true)
     @Override
     public User login(String loginname, String password) {
         System.out.println("login>>>>>>>>>>>>>>>>>>>>>>>>>>");
         return userDao.selectByLoginnameAndPassword(loginname,password);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public User findUserById(Integer id) {
         return userDao.selectById(id);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<User> findUser(User user, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -85,7 +86,7 @@ public class SmsServiceImpl implements SmsService {
         userDao.save(user);
 
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Employee> findEmployee(Employee employee, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -106,7 +107,7 @@ public class SmsServiceImpl implements SmsService {
     public void removeEmployeeById(Integer id) {
         employeeDao.deleteById(id);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public Employee findEmployeeById(Integer id) {
         return employeeDao.selectById(id);
@@ -121,7 +122,7 @@ public class SmsServiceImpl implements SmsService {
     public void modifyEmployee(Employee employee) {
         employeeDao.update(employee);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Dept> findDept(Dept dept, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -136,7 +137,7 @@ public class SmsServiceImpl implements SmsService {
         List<Dept> depts = deptDao.selectByPage(params);
         return depts;
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Dept> findAllDept() {
         return deptDao.selectAllDept();
@@ -153,7 +154,7 @@ public class SmsServiceImpl implements SmsService {
         deptDao.save(dept);
 
     }
-
+    @Transactional(readOnly = true)
     @Override
     public Dept findDeptById(Integer id) {
         return deptDao.selectById(id);
@@ -163,12 +164,12 @@ public class SmsServiceImpl implements SmsService {
     public void modifyDept(Dept dept) {
         deptDao.update(dept);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Job> findAllJob() {
         return jobDao.selectAllJob();
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Job> findJob(Job job, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -194,7 +195,7 @@ public class SmsServiceImpl implements SmsService {
     public void addJob(Job job) {
         jobDao.save(job);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public Job findJobById(Integer id) {
         return jobDao.selectById(id);
@@ -204,7 +205,7 @@ public class SmsServiceImpl implements SmsService {
     public void modifyJob(Job job) {
         jobDao.update(job);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Notice> findNotice(Notice notice, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -219,7 +220,7 @@ public class SmsServiceImpl implements SmsService {
         List<Notice> notices = noticeDao.selectByPage(params);
         return notices;
     }
-
+    @Transactional(readOnly = true)
     @Override
     public Notice findNoticeById(Integer id) {
         return noticeDao.SelectById(id);
@@ -239,7 +240,7 @@ public class SmsServiceImpl implements SmsService {
     public void modifyNotice(Notice notice) {
         noticeDao.update(notice);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public List<Document> findDocument(Document document, PageModel pageModel) {
         //当前需要分页的总数据条数
@@ -259,7 +260,7 @@ public class SmsServiceImpl implements SmsService {
     public void addDocument(Document document) {
         documentDao.save(document);
     }
-
+    @Transactional(readOnly = true)
     @Override
     public void findDocumentById(Integer id) {
         documentDao.selectById(id);

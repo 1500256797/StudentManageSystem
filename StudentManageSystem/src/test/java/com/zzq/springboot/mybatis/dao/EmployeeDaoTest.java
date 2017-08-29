@@ -60,7 +60,7 @@ public class EmployeeDaoTest {
 
     @Test
     public void selectById() throws Exception {
-        Employee employee = employeeDao.selectById(1);
+        Employee employee = employeeDao.selectById(2);
         System.out.println(employee.toString());
     }
 

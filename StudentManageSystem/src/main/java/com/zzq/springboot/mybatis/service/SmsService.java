@@ -2,17 +2,22 @@ package com.zzq.springboot.mybatis.service;
 
 import com.zzq.springboot.mybatis.domain.*;
 import com.zzq.springboot.mybatis.util.tag.PageModel;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 /**
  * Created by qqqqqqq on 17-8-29.
  */
+@Component
 public interface SmsService {
     //用户登陆
     User login(String loginname, String password);
 
     //id查询
+    @Transactional
     User findUserById(Integer id);
 
     //所有
