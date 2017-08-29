@@ -32,7 +32,8 @@ public interface JobDao {
 
     //删除
     @Delete("delete from " + JOBTABLE + " where id = #{id}")
-    void deleteById();
+    void deleteById(Integer id);
+
 
     //动态插入
     @SelectProvider(type = JobDynaSqlProvider.class, method = "insertJob")
