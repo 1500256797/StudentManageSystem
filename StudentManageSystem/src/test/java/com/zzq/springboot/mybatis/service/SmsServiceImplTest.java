@@ -2,7 +2,9 @@ package com.zzq.springboot.mybatis.service;
 
 import com.zzq.springboot.mybatis.domain.Dept;
 import com.zzq.springboot.mybatis.domain.Employee;
+import com.zzq.springboot.mybatis.domain.Job;
 import com.zzq.springboot.mybatis.domain.User;
+import com.zzq.springboot.mybatis.util.tag.PageModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -27,6 +31,8 @@ public class SmsServiceImplTest {
 
     @Test
     public void login() throws Exception {
+        User user = smsService.login("11111111", "123123");
+        System.out.println(user.toString());
     }
 
 
@@ -39,6 +45,7 @@ public class SmsServiceImplTest {
 
     @Test
     public void findUser() throws Exception {
+
     }
 
     @Test
@@ -47,10 +54,21 @@ public class SmsServiceImplTest {
 
     @Test
     public void modifyUser() throws Exception {
+        User user = new User();
+        user.setLoginname("2222222");
+        user.setId(5);
+        smsService.modifyUser(user);
+
     }
 
     @Test
     public void addUser() throws Exception {
+        User user = new User();
+        user.setUsername("黄");
+        user.setLoginname("11111111");
+        user.setPassword("123123");
+        user.setStatus(2);
+        smsService.addUser(user );
     }
 
     @Test
@@ -59,6 +77,8 @@ public class SmsServiceImplTest {
 
     @Test
     public void removeEmployeeById() throws Exception {
+        Employee employee = smsService.findEmployeeById(1);
+        System.out.println(employee.toString());
     }
 
     @Transactional
@@ -90,6 +110,11 @@ public class SmsServiceImplTest {
 
     @Test
     public void addDept() throws Exception {
+        Dept dept = new Dept();
+        dept.setName("广告部门");
+        dept.setRemark("广告部门发广告");
+        smsService.addDept(dept);
+
     }
 
     @Test
@@ -104,10 +129,20 @@ public class SmsServiceImplTest {
 
     @Test
     public void findAllJob() throws Exception {
+        List<Job> jobs = smsService.findAllJob();
+        for (Job job : jobs) {
+            System.out.println(job.toString());
+        }
     }
 
     @Test
     public void findJob() throws Exception {
+        Job job = new Job();
+        PageModel pageModel = new PageModel();
+        List<Job> jobs = smsService.findJob(job, pageModel);
+        for (Job job1 : jobs) {
+            System.out.println(job1.toString());
+        }
     }
 
     @Test
@@ -116,6 +151,11 @@ public class SmsServiceImplTest {
 
     @Test
     public void addJob() throws Exception {
+        Job job = new Job();
+        job.setName("团支书");
+        job.setRemark("团支书负责开会");
+        smsService.addJob(job);
+
     }
 
     @Test
@@ -128,6 +168,7 @@ public class SmsServiceImplTest {
 
     @Test
     public void findNotice() throws Exception {
+
     }
 
     @Test

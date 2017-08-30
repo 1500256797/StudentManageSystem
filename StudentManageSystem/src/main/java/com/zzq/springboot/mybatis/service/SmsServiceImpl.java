@@ -99,6 +99,7 @@ public class SmsServiceImpl implements SmsService {
             params.put("pageModel", pageModel);
         }
         List<Employee> employees  = employeeDao.selectByPage(params);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         return employees;
 
     }
@@ -175,6 +176,7 @@ public class SmsServiceImpl implements SmsService {
         //当前需要分页的总数据条数
         Map<String, Object> params = new HashMap<>();
         params.put("job",job);
+        //根据job获取job字段的数量
         int recordCount = jobDao.count(params);
         pageModel.setRecordCount(recordCount);
         if (recordCount > 0) {

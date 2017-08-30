@@ -12,7 +12,7 @@ import static com.zzq.springboot.mybatis.util.HrmConstants.JOBTABLE;
  * Created by qqqqqqq on 17-8-22.
  */
 public class JobDynaSqlProvider {
-    //分页动态查询
+    //分页动态查询   params  有job  有 pagemodel
     public String selectWithParam(Map<String, Object> params) {
         String sql = new SQL() {
             {
@@ -28,7 +28,8 @@ public class JobDynaSqlProvider {
         }.toString();
 
         if (params.get("pageModel") != null) {
-            sql += "limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
+//            sql += "limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
+              sql += " limit 1,4 ";
 
         }
         return sql;
@@ -44,7 +45,7 @@ public class JobDynaSqlProvider {
                 if (parmas.get("job") != null) {
                     Job job = (Job) parmas.get("job");
                     if (job.getName() != null && job.getName().equals("")) {
-                        WHERE("name LIKE CONCAT ('%',#{job.name,'%'})");
+                        WHERE("name LIKE CONCAT ('%',#{job.name},'%')");
                     }
                 }
             }
