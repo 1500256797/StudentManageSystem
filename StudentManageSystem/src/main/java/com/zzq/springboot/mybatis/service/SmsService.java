@@ -107,7 +107,7 @@ public interface SmsService {
     void addDocument(Document document);
 
     //find document id
-    void findDocumentById(Integer id);
+    Document findDocumentById(Integer id);
 
     //remove
     void removeDocumentById(Integer id);

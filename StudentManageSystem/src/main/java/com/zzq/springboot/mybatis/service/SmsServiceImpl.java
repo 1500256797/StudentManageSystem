@@ -264,8 +264,8 @@ public class SmsServiceImpl implements SmsService {
     }
     @Transactional(readOnly = true)
     @Override
-    public void findDocumentById(Integer id) {
-        documentDao.selectById(id);
+    public Document findDocumentById(Integer id) {
+        return  documentDao.selectById(id);
     }
 
     @Override
