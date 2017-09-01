@@ -1,9 +1,6 @@
 package com.zzq.springboot.mybatis.service;
 
-import com.zzq.springboot.mybatis.domain.Dept;
-import com.zzq.springboot.mybatis.domain.Employee;
-import com.zzq.springboot.mybatis.domain.Job;
-import com.zzq.springboot.mybatis.domain.User;
+import com.zzq.springboot.mybatis.domain.*;
 import com.zzq.springboot.mybatis.util.tag.PageModel;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,6 +42,13 @@ public class SmsServiceImplTest {
 
     @Test
     public void findUser() throws Exception {
+        User user = new User();
+        PageModel pageModel = new PageModel();
+        pageModel.setPageIndex(2);
+        List<User> users = smsService.findUser(user, pageModel);
+        for (User user1 : users) {
+            System.out.println(user1.toString());
+        }
 
     }
 
@@ -73,6 +77,13 @@ public class SmsServiceImplTest {
 
     @Test
     public void findEmployee() throws Exception {
+        Employee employee = new Employee();
+        PageModel pageModel = new PageModel();
+        pageModel.setPageIndex(1);
+        List<Employee> employees = smsService.findEmployee(employee, pageModel);
+        for (Employee employee1 : employees) {
+            System.out.println(employee1.toString());
+        }
     }
 
     @Test
@@ -98,6 +109,14 @@ public class SmsServiceImplTest {
 
     @Test
     public void findDept() throws Exception {
+        Dept dept = new Dept();
+        PageModel pageModel = new PageModel();
+        pageModel.setPageIndex(1);
+
+        List<Dept> depts = smsService.findDept(dept, pageModel);
+        for (Dept dept1 : depts) {
+            System.out.println(dept1.toString());
+        }
     }
 
     @Test
@@ -119,7 +138,7 @@ public class SmsServiceImplTest {
 
     @Test
     public void findDeptById() throws Exception {
-        Dept dept = smsService.findDeptById(1);
+        Dept dept = smsService.findDeptById(2);
         System.out.println(dept.toString());
     }
 
@@ -139,6 +158,7 @@ public class SmsServiceImplTest {
     public void findJob() throws Exception {
         Job job = new Job();
         PageModel pageModel = new PageModel();
+        pageModel.setPageIndex(2);
         List<Job> jobs = smsService.findJob(job, pageModel);
         for (Job job1 : jobs) {
             System.out.println(job1.toString());
@@ -168,7 +188,13 @@ public class SmsServiceImplTest {
 
     @Test
     public void findNotice() throws Exception {
-
+        Notice notice = new Notice();
+        PageModel pageModel = new PageModel();
+        pageModel.setPageIndex(1);
+        List<Notice> notices = smsService.findNotice(notice, pageModel);
+        for (Notice notice1 : notices) {
+            System.out.println(notice1.toString());
+        }
     }
 
     @Test

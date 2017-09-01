@@ -43,7 +43,7 @@ public class EmployeeDynaSqlProvider {
         }.toString();
 
         if (params.get("pageModel") != null) {
-            sql += "limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
+            sql += " limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
         }
         return sql;
     }

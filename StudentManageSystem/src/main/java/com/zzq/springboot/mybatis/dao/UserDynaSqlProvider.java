@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.zzq.springboot.mybatis.util.HrmConstants.USERTABLE;
 
+
 /**
  * Created by qqqqqqq on 17-7-25.
  */
@@ -18,7 +19,7 @@ public class UserDynaSqlProvider {
         String sql = new SQL(){
             {
                 SELECT("*");
-                FROM("USERTABLE");
+                FROM(USERTABLE);
                 if (params.get("user") != null) {
                     User user = (User) params.get("user");
                     if (user.getUsername() != null && !user.getUsername().equals("")) {
@@ -32,7 +33,7 @@ public class UserDynaSqlProvider {
         }.toString();
 
         if (params.get("pageModel") != null) {
-            sql += "limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
+            sql += " limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
         }
         return sql;
     }
@@ -49,7 +50,7 @@ public class UserDynaSqlProvider {
                     if (user.getUsername() != null && !user.getUsername().equals("")) {
                         WHERE("username LIKE CONCAT('%',#{user.username},'%')");
                     }
-                    if (user.getStatus() != null & !user.getStatus().equals("")) {
+                    if (user.getStatus() != null && !user.getStatus().equals("")) {
                         WHERE("status LIKE CONCAT ('%',#{user.status},'%')");
                     }
                 }

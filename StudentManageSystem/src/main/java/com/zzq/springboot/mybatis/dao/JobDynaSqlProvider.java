@@ -28,8 +28,8 @@ public class JobDynaSqlProvider {
         }.toString();
 
         if (params.get("pageModel") != null) {
-//            sql += "limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
-              sql += " limit 1,4 ";
+            sql += " limit #{pageModel.firstLimitParam},#{pageModel.pageSize}";
+//              sql += " limit 1,4 ";
 
         }
         return sql;
@@ -44,7 +44,7 @@ public class JobDynaSqlProvider {
                 FROM(JOBTABLE);
                 if (parmas.get("job") != null) {
                     Job job = (Job) parmas.get("job");
-                    if (job.getName() != null && job.getName().equals("")) {
+                    if (job.getName() != null && !job.getName().equals("")) {
                         WHERE("name LIKE CONCAT ('%',#{job.name},'%')");
                     }
                 }
